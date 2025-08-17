@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="row">
+  <div class="col-lg-8">
+    <h3>Bem-vindo ao WinSeller</h3>
+    <p>Suba seus <strong>Pedidos (CSV)</strong> e <strong>Recebimentos (CSV)</strong> para gerar a conciliação automática.</p>
+    <ol>
+      <li>Envie o CSV de <a href="{{ url_for('upload_orders') }}">Pedidos</a></li>
+      <li>Envie o CSV de <a href="{{ url_for('upload_releases') }}">Recebimentos</a></li>
+      <li>Veja o <a href="{{ url_for('report') }}">Relatório</a> com PENDENTE / PARCIAL / LIBERADO</li>
+    </ol>
+  </div>
+</div>
+{% endblock %}

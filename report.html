@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block content %}
+<h3>Relatório de Conciliação</h3>
+<div class="row my-3">
+  <div class="col-sm kpi"><div>Total de pedidos</div><div class="val">{{ kpis.pedidos }}</div></div>
+  <div class="col-sm kpi"><div>Bruto (R$)</div><div class="val">{{ '%.2f'|format(kpis.bruto) }}</div></div>
+  <div class="col-sm kpi"><div>Esperado (R$)</div><div class="val">{{ '%.2f'|format(kpis.esperado) }}</div></div>
+  <div class="col-sm kpi"><div>Liberado (R$)</div><div class="val">{{ '%.2f'|format(kpis.liberado) }}</div></div>
+  <div class="col-sm kpi"><div>Δ (R$)</div><div class="val">{{ '%.2f'|format(kpis.delta) }}</div></div>
+</div>
+
+<div class="table-responsive">
+<table class="table table-striped table-hover align-middle">
+  <thead>
+    <tr>
+      <th>Pedido</th><th>Item</th><th>Preço</th><th>Qtd</th><th>Método</th>
+      <th>Bruto</th><th>Comissão</th><th>Taxa fixa</th><th>Repasse</th>
+      <th>Esperado</th><th>Liberado</th><th>Δ</th><th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for r in rows %}
+    <tr class="status-{{ r.status }}">
+      <td>{{ r.order_sn }}</td>
+      <td>{{ r.item_name }}</td>
+      <td>{{ '%.2f'|format(r.unit_price or 0) }}</td>
+      <td>{{ r.qty }}</td>
+      <td>{{ r.metodo_envio }}</td>
+      <td>{{ '%.2f'|format(r.bruto or 0) }}</td>
+      <td>{{ '%.2f'|format(r.comissao or 0) }}</td>
+      <td>{{ '%.2f'|format(r.taxa_fixa or 0) }}</td>
+      <td>{{ '%.2f'|format(r.repasse or 0) }}</td>
+      <td>{{ '%.2f'|format(r.esperado or 0) }}</td>
+      <td>{{ '%.2f'|format(r.liberado or 0) }}</td>
+      <td>{{ '%.2f'|format(r.delta or 0) }}</td>
+      <td><strong>{{ r.status }}</strong></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endblock %}

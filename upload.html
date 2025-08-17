@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block content %}
+<h3>Enviar {{ kind }}</h3>
+<p>O sistema tenta mapear colunas automaticamente (ex.: "ID do pedido", "Preço acordado", "Número de produtos pedidos", "Método de envio").</p>
+<form method="post" enctype="multipart/form-data">
+  <div class="mb-3">
+    <input class="form-control" type="file" name="file" accept=".csv" required>
+  </div>
+  <button class="btn btn-primary" type="submit">Enviar</button>
+</form>
+{% endblock %}
